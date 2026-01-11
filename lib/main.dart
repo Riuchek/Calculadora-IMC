@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'models/pessoa.dart';
 
 void main() {
   runApp(const ImcCalculator());
@@ -35,7 +36,12 @@ class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
 
   void calculadoraIMC() {
     setState(() {
-      imc = peso / (altura * altura);
+      final pessoa = Pessoa(
+        nome: 'Usuário',
+        peso: peso,
+        altura: altura,
+      );
+      imc = pessoa.calcularImc();
     });
   }
 
@@ -71,7 +77,7 @@ class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Altura',
-                hintText: 'Digite sua altura em cm (ex: 1.70)',
+                hintText: 'Digite sua altura em metros (ex: 1.70)',
               ),
             ),
             ElevatedButton(
